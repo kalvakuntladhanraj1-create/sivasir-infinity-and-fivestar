@@ -1,152 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Legal Scrutiny Report</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
 body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: #f4f6f9;
     margin: 0;
-    padding: 0;
 }
+
 .container {
     max-width: 1100px;
     margin: 40px auto;
-    background: #ffffff;
+    background: #fff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
+
 h1 {
     text-align: center;
-    color: #2c3e50;
+    margin-bottom: 20px;
 }
-h2 {
-    margin-top: 30px;
-    font-size: 18px;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 6px;
+
+.section {
+    margin-top: 25px;
 }
+
+.section h3 {
+    border-left: 4px solid #4f46e5;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 12px;
 }
+
 input {
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
+    border: 1px solid #ccc;
 }
+
 button {
+    width: 100%;
     margin-top: 30px;
-    padding: 14px 40px;
+    padding: 14px;
     background: #4f46e5;
     color: white;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 16px;
 }
-button:hover {
-    opacity: 0.9;
-}
-</style>
-</head>
-
-<body>
-<div class="container">
-
-<h1>Legal Scrutiny Report – Sale Deed</h1>
-
-<!-- 🔴 THIS LINE WAS THE PROBLEM — NOW FIXED -->
-<form method="POST" action="/generate_sale">
-
-<h2>Basic Details</h2>
+</style></head><body><div class="container"><h1>Legal Scrutiny Report</h1><form method="POST" action="/generate_sale"><div class="section">
+<h3>Basic Details</h3>
 <div class="grid">
-<input name="DATE" placeholder="Date">
-<input name="BRANCH_NAME" placeholder="Branch Name">
-<input name="BRANCH_AREA" placeholder="Branch Area">
-<input name="APPLICATION_NO" placeholder="Application No">
-<input name="APPLICANT_BOLD" placeholder="Applicant Name">
+<input name="DATE" placeholder="DATE">
+<input name="BRANCH_NAME" placeholder="BRANCH_NAME">
+<input name="BRANCH_AREA" placeholder="BRANCH_AREA">
+<input name="APPLICATION_NO" placeholder="APPLICATION_NO">
+<input name="APPLICANT_BOLD" placeholder="APPLICANT_BOLD">
 </div>
-
-<h2>Property Details</h2>
+</div><div class="section">
+<h3>Property Details</h3>
 <div class="grid">
-<input name="DOOR_NO" placeholder="Door No">
-<input name="PLOT_NO" placeholder="Plot No">
-<input name="Assessment_No" placeholder="Assessment No">
-<input name="EXTENT_YARDS" placeholder="Extent (Sq Yards)">
-<input name="SURVEY_NO" placeholder="Survey No">
-<input name="ADDRESS" placeholder="Address">
-<input name="VILLAGE" placeholder="Village">
-<input name="GRAM_PANCHAYAT" placeholder="Gram Panchayat">
-<input name="MANDAL" placeholder="Mandal">
+<input name="DOOR_NO" placeholder="DOOR_NO">
+<input name="PLOT_NO" placeholder="PLOT_NO">
+<input name="Assessment_No" placeholder="Assessment_No">
+<input name="EXTENT_YARDS" placeholder="EXTENT_YARDS">
+<input name="SURVEY_NO" placeholder="SURVEY_NO">
+<input name="ADDRESS" placeholder="ADDRESS">
+<input name="VILLAGE" placeholder="VILLAGE">
+<input name="GRAM_PANCHAYAT" placeholder="GRAM_PANCHAYAT">
+<input name="MANDAL" placeholder="MANDAL">
 <input name="SRO" placeholder="SRO">
 <input name="RO" placeholder="RO">
-<input name="DISTRICT" placeholder="District">
+<input name="DISTRICT" placeholder="DISTRICT">
 </div>
-
-<h2>Boundaries</h2>
+</div><div class="section">
+<h3>Boundaries</h3>
 <div class="grid">
-<input name="EAST_BOUNDARY" placeholder="East Boundary">
-<input name="WEST_BOUNDARY" placeholder="West Boundary">
-<input name="NORTH_BOUNDARY" placeholder="North Boundary">
-<input name="SOUTH_BOUNDARY" placeholder="South Boundary">
+<input name="EAST_BOUNDARY" placeholder="EAST_BOUNDARY">
+<input name="WEST_BOUNDARY" placeholder="WEST_BOUNDARY">
+<input name="NORTH_BOUNDARY" placeholder="NORTH_BOUNDARY">
+<input name="SOUTH_BOUNDARY" placeholder="SOUTH_BOUNDARY">
 </div>
-
-<h2>Measurements</h2>
+</div><div class="section">
+<h3>Measurements</h3>
 <div class="grid">
-<input name="E_W" placeholder="East-West (Site)">
-<input name="N_S" placeholder="North-South (Site)">
-<input name="E_W_FEET" placeholder="East-West (Building)">
-<input name="N_S_FEET" placeholder="North-South (Building)">
-<input name="EXTENT_FEET" placeholder="Extent (Sq Feet)">
+<input name="E_W" placeholder="E_W">
+<input name="N_S" placeholder="N_S">
+<input name="E_W_FEET" placeholder="E_W_FEET">
+<input name="N_S_FEET" placeholder="N_S_FEET">
+<input name="EXTENT_FEET" placeholder="EXTENT_FEET">
 </div>
-
-<h2>Deed Details</h2>
+</div><div class="section">
+<h3>Deed Details</h3>
 <div class="grid">
-<input name="DEED_NO" placeholder="Deed No">
-<input name="DEED_DATE" placeholder="Deed Date">
-<input name="EXECUTANT_FULL" placeholder="Executant">
-<input name="APPLICANT_FULL" placeholder="Applicant Full Name">
-<input name="WORTH" placeholder="Property Worth">
+<input name="DEED_NO" placeholder="DEED_NO">
+<input name="DEED_DATE" placeholder="DEED_DATE">
+<input name="EXECUTANT_FULL" placeholder="EXECUTANT_FULL">
+<input name="APPLICANT_FULL" placeholder="APPLICANT_FULL">
+<input name="WORTH" placeholder="WORTH">
 </div>
-
-<h2>House Tax</h2>
+</div><div class="section">
+<h3>House Tax</h3>
 <div class="grid">
-<input name="HOUSE_TAX_DATE" placeholder="House Tax Date">
-<input name="HOUSE_TAX_RECIPT_NO" placeholder="Receipt No">
-<input name="FINANCIAL_YEARS" placeholder="Financial Year">
-<input name="HOUSE_TAX_NAME" placeholder="Name on Tax">
+<input name="HOUSE_TAX_DATE" placeholder="HOUSE_TAX_DATE">
+<input name="HOUSE_TAX_RECIPT_NO" placeholder="HOUSE_TAX_RECIPT_NO">
+<input name="FINANCIAL_YEARS" placeholder="FINANCIAL_YEARS">
+<input name="HOUSE_TAX_NAME" placeholder="HOUSE_TAX_NAME">
 </div>
-
-<h2>Electricity Details</h2>
+</div><div class="section">
+<h3>Electricity</h3>
 <div class="grid">
-<input name="ELECTRICITY_BILL_DATE" placeholder="Bill Date">
-<input name="SERVICE_NO" placeholder="Service No">
-<input name="ELECTRICITY_NAME" placeholder="Name on Bill">
+<input name="ELECTRICITY_BILL_DATE" placeholder="ELECTRICITY_BILL_DATE">
+<input name="SERVICE_NO" placeholder="SERVICE_NO">
+<input name="ELECTRICITY_NAME" placeholder="ELECTRICITY_NAME">
 </div>
-
-<h2>Encumbrance</h2>
+</div><div class="section">
+<h3>Encumbrance</h3>
 <div class="grid">
-<input name="EC_DATE" placeholder="EC Date">
-<input name="EC_NO" placeholder="EC No">
+<input name="EC_DATE" placeholder="EC_DATE">
+<input name="EC_NO" placeholder="EC_NO">
 </div>
-
-<h2>Possession</h2>
+</div><div class="section">
+<h3>Possession</h3>
 <div class="grid">
-<input name="TIME" placeholder="Possession From">
+<input name="TIME" placeholder="TIME">
 </div>
+</div><button type="submit">Generate Document</button>
 
-<button type="submit">Generate Report</button>
-
-</form>
-</div>
-</body>
+</form></div></body>
 </html>
