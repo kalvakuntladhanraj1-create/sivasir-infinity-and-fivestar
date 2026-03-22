@@ -1,35 +1,67 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
-<title>Legal Report Generator</title>
-
-<style>
-body{
-    font-family:Arial;
-    background:#f4f6f9;
-    text-align:center;
-    padding-top:100px;
+<meta charset="UTF-8">
+<title>Legal Report System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #f9fbfd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
-button{
-    padding:20px 40px;
-    margin:20px;
-    font-size:18px;
-    background:#4f46e5;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+
+.container {
+    text-align: center;
 }
-</style>
 
-</head>
+h1 {
+    margin-bottom: 40px;
+    color: #222;
+}
 
-<body>
+.card-wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
 
-<h1>Select Report Type</h1>
+.card {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.25s;
+    width: 220px;
+}
 
-<a href="/sale"><button>Generate SALE Report</button></a>
-<a href="/gift"><button>Generate GIFT Report</button></a>
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
 
-</body>
+.card h2 {
+    margin: 0;
+    color: #333;
+}
+
+.sale {
+    border-top: 5px solid #4f46e5;
+}
+
+.gift {
+    border-top: 5px solid #10b981;
+}
+</style></head><body><div class="container"><h1>Legal Report Generator</h1><div class="card-wrapper"><div class="card sale" onclick="goTo('sale')">
+<h2>Sale Report</h2>
+</div><div class="card gift" onclick="goTo('gift')">
+<h2>Gift Report</h2>
+</div></div></div><script>
+function goTo(type) {
+    window.location.href = "/" + type;
+}
+</script></body>
 </html>
