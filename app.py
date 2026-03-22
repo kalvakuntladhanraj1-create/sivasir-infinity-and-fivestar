@@ -1,67 +1,75 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template
 from docxtpl import DocxTemplate
 import os
 
 app = Flask(__name__)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ================= HEALTH CHECK (CRITICAL FOR RENDER) =================
-# UptimeRobot should monitor THIS route
-@app.route("/ping")
-def ping():
-    return "OK", 200
+# Base directory
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 # ================= HOME =================
 @app.route("/")
 def home():
-    with open(os.path.join(BASE_DIR, "html", "home.html"), encoding="utf-8") as f:
-        return f.read()
+    return render_template("home.html")
 
 
 # ================= SALE FORM =================
 @app.route("/sale")
 def sale_form():
-    with open(os.path.join(BASE_DIR, "html", "sale.html"), encoding="utf-8") as f:
-        return f.read()
+    return render_template("sale.html")
 
 
 # ================= GIFT FORM =================
 @app.route("/gift")
 def gift_form():
-    with open(os.path.join(BASE_DIR, "html", "gift.html"), encoding="utf-8") as f:
-        return f.read()
+    return render_template("gift.html")
 
 
 # ================= GENERATE SALE =================
 @app.route("/generate_sale", methods=["POST"])
 def generate_sale():
-    data = request.form.to_dict()
+    try:
+        data = request.form.to_dict()
 
-    template = os.path.join(BASE_DIR, "templates_docx", "sale.docx")
-    output = "/tmp/sale_report.docx"
+        template_path = os.path.join(BASE_DIR, "templates_docx", "sale.docx")
+        output_path = os.path.join("/tmp", "sale_report.docx")
 
-    doc = DocxTemplate(template)
-    doc.render(data)
-    doc.save(output)
+        if not os.path.exists(template_path):
+            return f"SALE TEMPLATE NOT FOUND: {template_path}", 500
 
-    return send_file(output, as_attachment=True)
+        doc = DocxTemplate(template_path)
+        doc.render(data)
+        doc.save(output_path)
+
+        return send_file(output_path, as_attachment=True)
+
+    except Exception as e:
+        return f"SALE ERROR: {str(e)}", 500
 
 
 # ================= GENERATE GIFT =================
 @app.route("/generate_gift", methods=["POST"])
 def generate_gift():
-    data = request.form.to_dict()
+    try:
+        data = request.form.to_dict()
 
-    template = os.path.join(BASE_DIR, "templates_docx", "gift.docx")
-    output = "/tmp/gift_report.docx"
+        template_path = os.path.join(BASE_DIR, "templates_docx", "gift.docx")
+        output_path = os.path.join("/tmp", "gift_report.docx")
 
-    doc = DocxTemplate(template)
-    doc.render(data)
-    doc.save(output)
+        if not os.path.exists(template_path):
+            return f"GIFT TEMPLATE NOT FOUND: {template_path}", 500
 
-    return send_file(output, as_attachment=True)
+        doc = DocxTemplate(template_path)
+        doc.render(data)
+        doc.save(output_path)
+
+        return send_file(output_path, as_attachment=True)
+
+    except Exception as e:
+        return f"GIFT ERROR: {str(e)}", 500
 
 
+# ================= RUN =================
 if __name__ == "__main__":
     app.run(debug=True)
